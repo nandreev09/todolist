@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Pacifico", cursive;
+    font-style: normal;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(220deg, #50c1ee, #e463f0, #2cc1fc, #00a2ff);
+    background-size: 300% 300%;
+    animation: move-bg 13s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    background-color: rgb(182, 193, 240);
+    border-radius: 20px;
+    width: 60%;
+    padding: 0 5px 5px 5px;
+}
+
+.list .add-task {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+}
+
+#add-button {
+    padding: 5px;
+    white-space: nowrap;
+    border-radius: 10px;
+    background-color: rgb(226, 34, 34);
+}
+
+.remove-btn {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(117, 179, 238);
+}
+
+.sort-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+}
+
+.button-style {
+    border-radius: 10px;
+    padding: 5px;
+    background: linear-gradient(220deg, #ee9750, #ff9b19, #ffee00);
+    background-size: 300% 300%;
+    animation: move-bg 13s linear infinite;
+}
+
+.list h1 {
+    text-align: center;
+}
+
+#task-text {
+    border-radius: 10px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.checkbox-and-text {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.list .task {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(173, 209, 240);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.input-timer {
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.start-timer {
+    margin-left: 10px;
+    border-radius: 10px;
+    width: 100px;
+    max-width: 100%;
+    background: linear-gradient(220deg, #ee9750, #ff9b19, #ffee00);
+}
+
+#task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#task-list .todo-text {
+    text-align: left;
+}
+
+.notify-and-delete {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.list .task .alarm {
+    max-width: 30px;
+    max-height: 30px;
+    outline: none;
+    border: 0;
+    background: transparent;
+}
+
+.list .task .alarm img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.list .task .alarm:hover {
+    cursor: pointer;
+}
+
+
+@keyframes move-bg {
+    0% {
+        background-position: 0%, 50%;
+    }
+
+    50% {
+        background-position: 100%, 50%;
+    }
+
+    100% {
+        background-position: 0%, 50%;
+    }
+}
