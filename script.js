@@ -61,39 +61,43 @@ class CreateTask {
         });
 
         this.alarmButton.addEventListener('click', () => {
-            this.alarmText = document.createElement('div');
-            this.inputTimer = document.createElement('input');
-            this.inputTimer.className = 'input-timer'
-            this.startTimer = document.createElement('button');
-            this.startTimer.className = 'start-timer';
-            this.reminder = document.createElement('div');
-            this.deleteAlarm = document.createElement('button');
-            this.startTimer.textContent = 'Начать';
-            this.deleteAlarm.textContent = 'ОК';
-            this.alarm.appendChild(this.alarmText);
-            list.appendChild(this.alarm);
-            this.alarm.appendChild(this.inputTimer);
-            this.alarmText.textContent = `Введите время для напоминания задачи "${this.toDoText.textContent}"`
-            this.alarm.appendChild(this.startTimer);
-            this.startTimer.addEventListener('click', () => {
-                const time = Number(this.inputTimer.value);
-                if (isNaN(time) || time <= 0) {
-                    alert("Введите корректное положительное число секунд");
-                    return;
-                }
-                this.alarmText.remove();
-                this.inputTimer.remove();
-                this.startTimer.remove()
-                setTimeout(() => {
-                    this.reminder.textContent = `Пора выполнить задачу ${this.toDoText.textContent}!`
-                    this.alarm.appendChild(this.reminder);
-                    this.alarm.appendChild(this.deleteAlarm);
-                }, this.inputTimer.value * 1000);
-            })
-            this.deleteAlarm.addEventListener('click', () => {
-                this.reminder.remove();
-                this.deleteAlarm.remove()
-            })
+            if (!this.alarmText) {
+                this.alarmText = document.createElement('div');
+                this.inputTimer = document.createElement('input');
+                this.inputTimer.className = 'input-timer'
+                this.startTimer = document.createElement('button');
+                this.startTimer.className = 'start-timer';
+                this.reminder = document.createElement('div');
+                this.deleteAlarm = document.createElement('button');
+                this.startTimer.textContent = 'Начать';
+                this.deleteAlarm.textContent = 'ОК';
+                this.alarm.appendChild(this.alarmText);
+                list.appendChild(this.alarm);
+                this.alarm.appendChild(this.inputTimer);
+                this.alarmText.textContent = `Введите время для напоминания задачи "${this.toDoText.textContent}"`
+                this.alarm.appendChild(this.startTimer);
+                this.startTimer.addEventListener('click', () => {
+                    const time = Number(this.inputTimer.value);
+                    if (isNaN(time) || time <= 0) {
+                        alert("Введите корректное положительное число секунд");
+                        return;
+                    }
+                    this.alarmText.remove();
+                    this.inputTimer.remove();
+                    this.startTimer.remove()
+                    setTimeout(() => {
+                        this.reminder.textContent = `Пора выполнить задачу ${this.toDoText.textContent}!`
+                        this.alarm.appendChild(this.reminder);
+                        this.alarm.appendChild(this.deleteAlarm);
+                    }, this.inputTimer.value * 1000);
+                })
+                this.deleteAlarm.addEventListener('click', () => {
+                    this.reminder.remove();
+                    this.deleteAlarm.remove()
+                })
+            } else {
+                alert("Таймер уже создан")
+            }
         })
     }
 
@@ -167,7 +171,7 @@ function firstStart() {
     fetch('https://jsonplaceholder.typicode.com/todos/')
         .then(response => response.json())
         .then(data => {
-            for (let id = 1; id <= 5; id++) {
+            for (let id = 0; id < 5; id++) {
                 new CreateTask(data[id].title)
             }
             localStorage.setItem('firstVisitDone', 'true');
@@ -200,7 +204,7 @@ function showDoneTasks() {
     doneTasks.forEach(task => {
         const taskObj = new CreateTask(task.text, false);
         taskObj.checkTask.checked = true;
-        taskObj.toDoText.style.textDecoration = 'none';
+        taskObj.toDoText.style.textDecoration = 'line-through';
     });
 }
 
